@@ -2,6 +2,21 @@ import streamlit as st
 import pandas as pd
 import pickle
 import requests
+import gdown
+import os
+
+# Define Google Drive file IDs
+similarity_vectorization_url = "https://drive.google.com/uc?id=1NSMACB1wgPdOf6ZjDb7GcObhUh614Urs"
+similarity_lsa_url = "https://drive.google.com/uc?id=17XhT43YiR8yCWe6NTLhwQz9iVeNkb2-2"
+
+# Function to download files from Google Drive
+def download_file(url, output_path):
+    if not os.path.exists(output_path):
+        gdown.download(url, output_path, quiet=False)
+
+# Download the necessary files
+download_file(similarity_vectorization_url, 'similarity_Vectorization.pkl')
+download_file(similarity_lsa_url, 'similarity_LSA.pkl')
 
 #Fetching the movies_list for VECTORIZATION
 movies_dict = pickle.load(open('movie_dict_Vectorization.pkl', 'rb'))
